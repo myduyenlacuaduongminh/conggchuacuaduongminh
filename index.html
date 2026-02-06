@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Một ngày đáng nhớ</title>
+  <title>Một ngày khó quên</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
@@ -60,7 +60,7 @@
     }
 
     .title {
-      font-size: 32px;
+      font-size: 23px;
       font-weight: 700;
       color: #ffd1e8;
       margin-bottom: 18px;
@@ -265,7 +265,7 @@
 
     <!-- ================= STEP 1: PASSWORD ================= -->
     <div class="step active" id="stepPassword">
-      <div class="title">Một ngày đáng nhớ</div>
+      <div class="title">Một ngày khó quên</div>
 
       <div class="dots" id="dots">
         <div class="dot"></div>
@@ -309,23 +309,23 @@
         <div class="answers" id="answersBox"></div>
 
         <button class="next-btn" id="nextBtn" onclick="nextQuestion()">
-          Tiếp tục ➜
+          Tiếp nhó ➜
         </button>
 
         <div class="message" id="quizMsg"></div>
       </div>
 
-      <div class="footer">Trả lời đúng để mở khoá 💕</div>
+      <div class="footer">Không đúng không cho qua  💕</div>
     </div>
 
     <!-- ================= STEP 3: FINISH ================= -->
     <div class="step" id="stepFinish">
-      <div class="title">Hoàn thành rồi 💜</div>
+      <div class="title">Giỏi lắm bây bi </div>
       <div class="message" style="color:#7CFFB3; font-size:14px;">
-        Đang chuyển đến món quà dành cho bạn...
+        Có bất ngờ đang đến cho bé ...
         <span class="loading"></span>
       </div>
-      <div class="footer">Chờ một chút nha 😍</div>
+      <div class="footer">Chờ anh một tẹo nhó 😍</div>
     </div>
 
   </div>
@@ -335,7 +335,7 @@
     // CONFIG
     // ==============================
 
-    const correctPassword = "1234";
+    const correctPassword = "1710";
 
     const redirectURL =
       "https://panbap.github.io/HeartBeat/lovequiz.html?id=eyJsIjoiIiwibSI6IiIsIm4iOiJCw6J5IGJpIMahaSBhbmggY8OzIMSRaeG7gXUgbXXhu5FuIG7Ds2kgLi4uLi4iLCJvIjoiQW5oIHRoxrDGoW5nIGLDqSBuaGnhu4F1IGzhuq9tIiwiZyI6IkThuqEgYsOpIG3Dum4gbmdoZSEiLCJoIjoiTmdoZSBz4bq9IGPDsyBxdcOgISJ9";
@@ -343,20 +343,25 @@
     // Quiz data (bạn sửa câu hỏi ở đây)
     const quizData = [
       {
-        question: "1) Ngày chúng mình chính thức bắt đầu là ngày nào?",
-        answers: ["05/02", "14/02", "20/10", "01/01"],
+        question: "1) Tin nhắn đầu tiên của chúng mình là gì?",
+        answers: ["Helu Bèo", "Hellu Bèo", "Dô nghiện", "Helu Tiêu😒"],
         correct: 0
       },
       {
-        question: "2) Người yêu của bạn đáng yêu không?",
-        answers: ["Không hề", "Bình thường", "Dễ thương vừa", "Dễ thương nhất thế giới 💜"],
+        question: "2) SetLove là ngày nào?",
+        answers: ["18/10", "19/08", "18/09", "Bé hong nhớ"],
         correct: 3
       },
       {
-        question: "3) Khi buồn thì người đó cần gì nhất?",
-        answers: ["Một cái ôm", "Một ly trà sữa", "Một lời quan tâm", "Tất cả đều đúng"],
+        question: "3) FirstDate mình đã đi đâu làm gì?",
+        answers: ["Đi cà phơ", "Đi tô tượng", "Hun nhau", "Dạ tất cả đều đúng ạ"],
         correct: 3
-      }
+      },
+      {
+        question: "4) Em thấy mình là người như thế nào?",
+        answers: ["Quá xinh", "Quá tâm lý", "Yêu Dương Minh nhất", "Bé lấy hết"],
+        correct: 3
+      },
     ];
 
     // ==============================
@@ -401,7 +406,7 @@
 
       if (input === correctPassword) {
         msg.style.color = "#7CFFB3";
-        msg.innerHTML = "Đúng mật khẩu... <span class='loading'></span>";
+        msg.innerHTML = "Gút chop ... <span class='loading'></span>";
 
         setTimeout(() => {
           showStep("stepQuiz");
@@ -410,7 +415,7 @@
 
       } else {
         msg.style.color = "#ff6b6b";
-        msg.innerText = "Sai mật khẩu!";
+        msg.innerText = "Sai gòi😭";
 
         screen.classList.add("shake");
 
@@ -477,7 +482,7 @@
     
         btn.classList.add("correct");
         document.getElementById("quizMsg").style.color = "#7CFFB3";
-        document.getElementById("quizMsg").innerText = "Đúng rồi 💜";
+        document.getElementById("quizMsg").innerText = "Hay quá ta";
     
         // Disable tất cả nút sau khi đúng
         allBtns.forEach(b => b.disabled = true);
@@ -488,7 +493,7 @@
         btn.classList.add("wrong");
     
         document.getElementById("quizMsg").style.color = "#ff6b6b";
-        document.getElementById("quizMsg").innerText = "Sai rồi 😭 thử lại đi!";
+        document.getElementById("quizMsg").innerText = "Shao bé lại shine😭!";
     
         // Sau 600ms tự bỏ màu đỏ để chọn lại
         setTimeout(() => {
