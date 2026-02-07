@@ -506,6 +506,7 @@ Mong rằng sự hạnh phúc của em luôn có sự hiện diện của anh, c
     let pin = "";
     let qIndex = 0;
     let answered = false;
+    let audioUnlocked = false;
 
     function updateDots() {
       el.dots.forEach((d, i) => d.classList.toggle("filled", i < pin.length));
@@ -524,6 +525,20 @@ Mong rằng sự hạnh phúc của em luôn có sự hiện diện của anh, c
     }
 
     function addNum(num) {
+      if (!audioUnlocked) {
+        audioUnlocked = true;
+    
+        // trick để trình duyệt cho phép phát âm thanh
+        el.soundWrong.play().then(() => {
+          el.soundWrong.pause();
+          el.soundWrong.currentTime = 0;
+        }).catch(()=>{});
+    
+        el.soundCorrect.play().then(() => {
+          el.soundCorrect.pause();
+          el.soundCorrect.currentTime = 0;
+        }).catch(()=>{});
+      }
       if (pin.length >= 4) return;
       pin += num;
       updateDots();
