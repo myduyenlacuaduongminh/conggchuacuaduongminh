@@ -105,7 +105,7 @@
       100% { opacity: 0; transform: translateY(120vh) scale(0.8) rotate(360deg); }
     }
     .screen {
-      width: min(90vw, 360px);
+      width: min(95vw, 520px);
       max-height: 95dvh;
       overflow-y: auto;
       padding: clamp(20px, 5vw, 32px) clamp(16px, 4vw, 28px);
@@ -273,9 +273,9 @@
     ============================ */
     .letter-layout {
       display: grid;
-      grid-template-columns: 1.3fr 1fr;
+      grid-template-columns: 1.6fr 1fr; /* tăng phần chữ */
       gap: 18px;
-      align-items: center;
+      align-items: start; /* chữ nằm lên trên */
       margin-top: 10px;
     }
     @media (max-width: 720px) {
@@ -291,16 +291,14 @@
       border: 1px solid rgba(255,255,255,0.14);
       box-shadow: 0 10px 24px rgba(0,0,0,0.4);
     
-      /* FIX CÂN ĐỐI FORM */
-      height: 320px;
-      overflow-y: auto;
+      /* FIX CÂN ĐỐI FORM (TĂNG CHIỀU CAO) */
+      height: auto;
+      min-height: 470px;
+    
+      /* KHÔNG CHO SCROLL */
+      overflow-y: hidden;
     
       position: relative;
-    }
-    
-    /* scroll đẹp hơn */
-    .letter-box::-webkit-scrollbar {
-      width: 6px;
     }
     .letter-box::-webkit-scrollbar-thumb {
       background: rgba(255,255,255,0.25);
@@ -311,11 +309,8 @@
     }
     
     .letter-text {
-      font-size: clamp(13px, 3.6vw, 15px);
-    
-      /* chữ gọn hơn, cân đối hơn */
-      line-height: 1.55;
-    
+      font-size: clamp(12.5px, 3.2vw, 14px);
+      line-height: 1.5;
       color: rgba(255,255,255,0.92);
       white-space: pre-line;
     }
