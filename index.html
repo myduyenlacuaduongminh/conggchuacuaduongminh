@@ -118,6 +118,17 @@
       position: relative;
       z-index: 1;
     }
+    /* Chỉ riêng màn Password thì nhỏ lại */
+    .screen.password-mode {
+      width: min(90vw, 360px);
+      max-height: 95dvh;
+    }
+    
+    /* Cho chuyển đổi mượt hơn */
+    .screen {
+      transition: width 0.35s ease, height 0.35s ease;
+    }
+    
     .title {
       font-size: clamp(20px, 5vw, 26px);
       font-weight: 700;
@@ -343,7 +354,7 @@
 </head>
 <body>
   <div class="particles" id="particles"></div>
-  <div class="screen" id="screen">
+  <div class="screen password-mode" id="screen">
 
     <!-- STEP PASSWORD -->
     <div class="step active" id="stepPassword">
@@ -432,7 +443,7 @@
     const REDIRECT = "https://panbap.github.io/HeartBeat/lovequiz.html?id=eyJsIjoiIiwibSI6IiIsIm4iOiJCw6J5IGJpIMahaSBhbmggY8OzIMSRaeG7gXUgbXXhu5FuIG7Ds2kuLi4uIiwibyI6IkFuaCB0aMawxqFuZyBiw6kgbmhp4buBdSBs4bqvbSAiLCJnIjoiROG6oSBiw6kgbmdoZSEiLCJoIjoiTmdoZSBz4bq9IGPDsyBxdcOgIG5ow7MhIn0%3D";
     const quiz = [
       { q: "1) Tin nhắn đầu tiên của chúng mình là gì?", a: ["Helu Bèo","Hellu Bèo","Dô nghiện","Helu Tiêu😒"], c:0 },
-      { q: "2) Anh sinh ngày bao nhiêu và cung gì?", a: ["08/03 cung Thiên Bình","07/03 cung Song Ngư","11/07 cung Cự Giải","Bé hong nhớ"], c:1 },
+      /*{ q: "2) Anh sinh ngày bao nhiêu và cung gì?", a: ["08/03 cung Thiên Bình","07/03 cung Song Ngư","11/07 cung Cự Giải","Bé hong nhớ"], c:1 },
       { q: "3) SetLove là ngày nào?", a: ["18/10","19/08","18/09","Bé hong nhớ"], c:2 },
       { q: "4) Điều gì em thấy anh tệ nhất?", a: ["Hay ghen","Hay khóc","Không chiều chuộng em","On core roét"], c:3 },
       { q: "5) Em nghĩ điều gì anh lại chọn bên em?", a: ["Sự đồng cảm","Vì xinh","Sự ngây ngô","Em yêu anh"], c:0 },
@@ -440,17 +451,17 @@
       { q: "7) Lý do tại sao em lại chọn anh?", a: ["...."], c:0 },
       { q: "8) FirstDate mình đã đi đâu làm gì?", a: ["Đi cà phơ","Đi tô tượng","Hun nhau","Dạ tất cả đều đúng ạ"], c:3 },
       { q: "9) Em thấy mình là người như thế nào?", a: ["Quá xinh","Quá tâm lý","Yêu Dương Minh nhất","Bé lấy hết"], c:3 },
-      { q: "10) Anh muốn nói là?", a: ["ANH THƯƠNG EM LẮM DUYÊN"], c:0 }
+      { q: "10) Anh muốn nói là?", a: ["ANH THƯƠNG EM LẮM DUYÊN"], c:0 }*/
       
     
     ];
 
     // LỜI NHẮN NHỦ (giữ nguyên)
-    const loveMessage = `Anh là một thằng khùng điên dẫu cứ ôm em trong lòng rồi mà đã nhớ em những ngày sắp tới.
-Yêu anh thì đừng hỏi anh tình yêu màu gì rồi em sẽ thấy nó trong suốt quãng thời gian em bên anh thôi.
-Biết là đường đi phía trước sẽ còn rất dài và nhiều sự khó khăn nhưng sẽ qua thôi nếu chúng mình đi cùng nhau.
-Dù cho cuộc đời có dạy anh biết bao điều đi nữa, anh sẽ không quên được một điều, đó là yêu em.
-Mong rằng sự hạnh phúc của em luôn có sự hiện diện của anh, của đôi ta nhé hỡi cô công chúa của anh 💗`;
+    const loveMessage = `Anh là một thằng khờ, dù đã ôm em trong lòng rồi mà vẫn nhớ em đến nghẹn cả những ngày chưa kịp tới.
+Yêu anh thì đừng hỏi tình yêu màu gì, vì em sẽ thấy nó trong từng ánh mắt, từng cái nắm tay và từng phút giây em ở cạnh anh.
+Anh biết phía trước còn dài và sẽ có nhiều điều làm mình mệt, nhưng rồi tất cả sẽ nhẹ thôi nếu chúng mình vẫn chọn đi cùng nhau.
+Dù cuộc đời có bắt anh học thêm bao nhiêu bài học nữa, anh vẫn sẽ không bao giờ quên một điều, đó là yêu em hơn cả chính mình.
+Mong rằng nụ cười và hạnh phúc của em luôn có anh ở đó, có đôi ta bên nhau mãi nhé cô công chúa bé nhỏ của anh 💗`;
 
     /* ==========================
        CHỈ SỬA ẢNH Ở ĐÂY
@@ -540,6 +551,13 @@ Mong rằng sự hạnh phúc của em luôn có sự hiện diện của anh, c
     function show(id) {
       document.querySelectorAll(".step").forEach(s => s.classList.remove("active"));
       document.getElementById(id).classList.add("active");
+    
+      // Nếu là stepPassword => screen nhỏ
+      if (id === "stepPassword") {
+        el.screen.classList.add("password-mode");
+      } else {
+        el.screen.classList.remove("password-mode");
+      }
     }
 
     function startQuiz() {
